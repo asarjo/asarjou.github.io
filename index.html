@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Machine - Wealth Builder Tools</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Money Machine</h1>
+    <p class="tagline">Tools to plan your path to wealth</p>
+  </header>
+
+  <main>
+    <!-- Tab Navigation -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="compound">Compound Interest</button>
+      <button class="tab" data-tab="fire">FIRE Calculator</button>
+      <button class="tab" data-tab="side-hustle">Side Hustle Planner</button>
+    </nav>
+
+    <!-- Compound Interest Calculator -->
+    <section id="compound" class="tab-content active">
+      <h2>Compound Interest Calculator</h2>
+      <p class="description">See how your money grows over time with the power of compounding.</p>
+
+      <div class="calculator-grid">
+        <div class="input-group">
+          <label for="ci-initial">Starting Amount ($)</label>
+          <input type="number" id="ci-initial" value="10000" min="0" step="100">
+        </div>
+        <div class="input-group">
+          <label for="ci-monthly">Monthly Contribution ($)</label>
+          <input type="number" id="ci-monthly" value="500" min="0" step="50">
+        </div>
+        <div class="input-group">
+          <label for="ci-rate">Annual Return (%)</label>
+          <input type="number" id="ci-rate" value="10" min="0" max="50" step="0.5">
+        </div>
+        <div class="input-group">
+          <label for="ci-years">Time Period (years)</label>
+          <input type="number" id="ci-years" value="20" min="1" max="60" step="1">
+        </div>
+      </div>
+
+      <button class="btn-calculate" onclick="calculateCompound()">Calculate</button>
+
+      <div id="ci-results" class="results hidden">
+        <div class="result-cards">
+          <div class="result-card highlight">
+            <span class="result-label">Future Value</span>
+            <span class="result-value" id="ci-future"></span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Contributed</span>
+            <span class="result-value" id="ci-contributed"></span>
+          </div>
+          <div class="result-card accent">
+            <span class="result-label">Interest Earned</span>
+            <span class="result-value" id="ci-interest"></span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="ci-chart"></canvas>
+        </div>
+        <div id="ci-milestones" class="milestones"></div>
+      </div>
+    </section>
+
+    <!-- FIRE Calculator -->
+    <section id="fire" class="tab-content">
+      <h2>FIRE Calculator</h2>
+      <p class="description">Financial Independence, Retire Early &mdash; find out when you can stop working.</p>
+
+      <div class="calculator-grid">
+        <div class="input-group">
+          <label for="fire-income">Annual Income ($)</label>
+          <input type="number" id="fire-income" value="80000" min="0" step="1000">
+        </div>
+        <div class="input-group">
+          <label for="fire-expenses">Annual Expenses ($)</label>
+          <input type="number" id="fire-expenses" value="40000" min="0" step="1000">
+        </div>
+        <div class="input-group">
+          <label for="fire-saved">Current Savings ($)</label>
+          <input type="number" id="fire-saved" value="50000" min="0" step="1000">
+        </div>
+        <div class="input-group">
+          <label for="fire-return">Expected Return (%)</label>
+          <input type="number" id="fire-return" value="7" min="0" max="30" step="0.5">
+        </div>
+        <div class="input-group">
+          <label for="fire-withdraw">Safe Withdrawal Rate (%)</label>
+          <input type="number" id="fire-withdraw" value="4" min="1" max="10" step="0.5">
+        </div>
+      </div>
+
+      <button class="btn-calculate" onclick="calculateFIRE()">Calculate</button>
+
+      <div id="fire-results" class="results hidden">
+        <div class="result-cards">
+          <div class="result-card highlight">
+            <span class="result-label">FIRE Number</span>
+            <span class="result-value" id="fire-number"></span>
+          </div>
+          <div class="result-card accent">
+            <span class="result-label">Years to FIRE</span>
+            <span class="result-value" id="fire-years"></span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Savings Rate</span>
+            <span class="result-value" id="fire-rate"></span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="fire-chart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Side Hustle Planner -->
+    <section id="side-hustle" class="tab-content">
+      <h2>Side Hustle Income Planner</h2>
+      <p class="description">Plan extra income streams and see how they accelerate your wealth.</p>
+
+      <div id="hustle-list">
+        <div class="hustle-row">
+          <input type="text" placeholder="Hustle name" class="hustle-name" value="Freelancing">
+          <input type="number" placeholder="$/month" class="hustle-income" value="1500" min="0" step="50">
+          <input type="number" placeholder="hrs/week" class="hustle-hours" value="10" min="0" step="1">
+          <button class="btn-remove" onclick="removeHustle(this)" title="Remove">&times;</button>
+        </div>
+      </div>
+      <button class="btn-add" onclick="addHustle()">+ Add Hustle</button>
+
+      <div class="calculator-grid" style="margin-top: 1.5rem;">
+        <div class="input-group">
+          <label for="hustle-invest-pct">% of Hustle Income Invested</label>
+          <input type="number" id="hustle-invest-pct" value="80" min="0" max="100" step="5">
+        </div>
+        <div class="input-group">
+          <label for="hustle-return">Annual Return (%)</label>
+          <input type="number" id="hustle-return" value="10" min="0" max="30" step="0.5">
+        </div>
+        <div class="input-group">
+          <label for="hustle-years">Time Period (years)</label>
+          <input type="number" id="hustle-years" value="5" min="1" max="30" step="1">
+        </div>
+      </div>
+
+      <button class="btn-calculate" onclick="calculateHustle()">Calculate</button>
+
+      <div id="hustle-results" class="results hidden">
+        <div class="result-cards">
+          <div class="result-card">
+            <span class="result-label">Monthly Hustle Income</span>
+            <span class="result-value" id="hustle-monthly"></span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Effective Hourly Rate</span>
+            <span class="result-value" id="hustle-hourly"></span>
+          </div>
+          <div class="result-card highlight">
+            <span class="result-label">Invested Growth Value</span>
+            <span class="result-value" id="hustle-growth"></span>
+          </div>
+          <div class="result-card accent">
+            <span class="result-label">Total Wealth Generated</span>
+            <span class="result-value" id="hustle-total"></span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="hustle-chart"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Money Machine &mdash; Make smarter financial decisions. Not financial advice.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
