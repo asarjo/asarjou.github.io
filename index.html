@@ -3,185 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Money Machine - Wealth Builder Tools</title>
+  <title>MarineChill — Marine Refrigeration for Every Boat</title>
+  <meta name="description" content="Premium marine fridges built for life on the water. Reliable cooling from 35L compact to 110L captain-sized units.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Money Machine</h1>
-    <p class="tagline">Tools to plan your path to wealth</p>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <div class="logo">Marine<span>Chill</span></div>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="cart-btn" id="cart-btn" aria-label="Open cart">
+            <span class="cart-icon">&#128722;</span>
+            <span class="cart-badge" id="cart-badge"></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <!-- Tab Navigation -->
-    <nav class="tabs">
-      <button class="tab active" data-tab="compound">Compound Interest</button>
-      <button class="tab" data-tab="fire">FIRE Calculator</button>
-      <button class="tab" data-tab="side-hustle">Side Hustle Planner</button>
-    </nav>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <span style="top:10%;left:8%">&#9875;</span>
+      <span style="top:60%;left:5%;font-size:3rem">&#10052;</span>
+      <span style="top:20%;right:10%;font-size:5rem">&#9875;</span>
+      <span style="top:70%;right:8%">&#10052;</span>
+      <span style="top:40%;left:25%;font-size:2.5rem">&#9875;</span>
+      <span style="top:80%;right:25%;font-size:3.5rem">&#9875;</span>
+    </div>
+    <div class="hero-content">
+      <h1>Reliable Cooling for Life on the Water</h1>
+      <p>Marine-grade refrigeration engineered to handle the harshest conditions. From weekend cruisers to ocean voyagers.</p>
+      <a href="#products" class="btn-primary">Shop Marine Fridges</a>
+    </div>
+  </section>
 
-    <!-- Compound Interest Calculator -->
-    <section id="compound" class="tab-content active">
-      <h2>Compound Interest Calculator</h2>
-      <p class="description">See how your money grows over time with the power of compounding.</p>
+  <!-- Products -->
+  <section class="section" id="products">
+    <div class="section-inner">
+      <h2 class="section-title">Our Marine Fridges</h2>
+      <p class="section-subtitle">Built tough, cooled right. Find the perfect fit for your vessel.</p>
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="compact">Compact</button>
+        <button class="filter-btn" data-filter="mid">Mid-Size</button>
+        <button class="filter-btn" data-filter="large">Large</button>
+        <button class="filter-btn" data-filter="dual">Dual Zone</button>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </section>
 
-      <div class="calculator-grid">
-        <div class="input-group">
-          <label for="ci-initial">Starting Amount ($)</label>
-          <input type="number" id="ci-initial" value="10000" min="0" step="100">
+  <!-- Features -->
+  <section class="section features-section" id="features">
+    <div class="section-inner">
+      <h2 class="section-title">Built for the Sea</h2>
+      <p class="section-subtitle">Every MarineChill unit is designed to thrive where others fail.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9875;</div>
+          <h3>Marine-Grade Construction</h3>
+          <p>316 stainless steel hardware and UV-resistant housings that shrug off salt spray and sun exposure.</p>
         </div>
-        <div class="input-group">
-          <label for="ci-monthly">Monthly Contribution ($)</label>
-          <input type="number" id="ci-monthly" value="500" min="0" step="50">
+        <div class="feature-card">
+          <div class="feature-icon">&#9889;</div>
+          <h3>Ultra-Low Power Draw</h3>
+          <p>Efficient compressors draw as little as 45W, keeping your batteries happy on long passages.</p>
         </div>
-        <div class="input-group">
-          <label for="ci-rate">Annual Return (%)</label>
-          <input type="number" id="ci-rate" value="10" min="0" max="50" step="0.5">
+        <div class="feature-card">
+          <div class="feature-icon">&#10052;</div>
+          <h3>Wide Temperature Range</h3>
+          <p>From freezer-cold -18&deg;C to a gentle 10&deg;C. One unit handles frozen stores and fresh provisions.</p>
         </div>
-        <div class="input-group">
-          <label for="ci-years">Time Period (years)</label>
-          <input type="number" id="ci-years" value="20" min="1" max="60" step="1">
+        <div class="feature-card">
+          <div class="feature-icon">&#9881;</div>
+          <h3>Vibration Resistant</h3>
+          <p>Shock-mounted compressors and reinforced insulation designed for rough seas and engine vibration.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9733;</div>
+          <h3>3-Year Warranty</h3>
+          <p>Every unit backed by our comprehensive 3-year warranty with worldwide service support.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128295;</div>
+          <h3>Easy Installation</h3>
+          <p>Universal 12V/24V input, drop-in sizing, and clear instructions. Most installs take under an hour.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <button class="btn-calculate" onclick="calculateCompound()">Calculate</button>
-
-      <div id="ci-results" class="results hidden">
-        <div class="result-cards">
-          <div class="result-card highlight">
-            <span class="result-label">Future Value</span>
-            <span class="result-value" id="ci-future"></span>
-          </div>
-          <div class="result-card">
-            <span class="result-label">Total Contributed</span>
-            <span class="result-value" id="ci-contributed"></span>
-          </div>
-          <div class="result-card accent">
-            <span class="result-label">Interest Earned</span>
-            <span class="result-value" id="ci-interest"></span>
-          </div>
-        </div>
-        <div class="chart-container">
-          <canvas id="ci-chart"></canvas>
-        </div>
-        <div id="ci-milestones" class="milestones"></div>
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Marine<span>Chill</span></div>
+        <p>Premium marine refrigeration for cruisers, fishers, and liveaboards. Keeping your catch cold and your drinks colder since 2019.</p>
       </div>
-    </section>
-
-    <!-- FIRE Calculator -->
-    <section id="fire" class="tab-content">
-      <h2>FIRE Calculator</h2>
-      <p class="description">Financial Independence, Retire Early &mdash; find out when you can stop working.</p>
-
-      <div class="calculator-grid">
-        <div class="input-group">
-          <label for="fire-income">Annual Income ($)</label>
-          <input type="number" id="fire-income" value="80000" min="0" step="1000">
-        </div>
-        <div class="input-group">
-          <label for="fire-expenses">Annual Expenses ($)</label>
-          <input type="number" id="fire-expenses" value="40000" min="0" step="1000">
-        </div>
-        <div class="input-group">
-          <label for="fire-saved">Current Savings ($)</label>
-          <input type="number" id="fire-saved" value="50000" min="0" step="1000">
-        </div>
-        <div class="input-group">
-          <label for="fire-return">Expected Return (%)</label>
-          <input type="number" id="fire-return" value="7" min="0" max="30" step="0.5">
-        </div>
-        <div class="input-group">
-          <label for="fire-withdraw">Safe Withdrawal Rate (%)</label>
-          <input type="number" id="fire-withdraw" value="4" min="1" max="10" step="0.5">
-        </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#products">Products</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
-
-      <button class="btn-calculate" onclick="calculateFIRE()">Calculate</button>
-
-      <div id="fire-results" class="results hidden">
-        <div class="result-cards">
-          <div class="result-card highlight">
-            <span class="result-label">FIRE Number</span>
-            <span class="result-value" id="fire-number"></span>
-          </div>
-          <div class="result-card accent">
-            <span class="result-label">Years to FIRE</span>
-            <span class="result-value" id="fire-years"></span>
-          </div>
-          <div class="result-card">
-            <span class="result-label">Savings Rate</span>
-            <span class="result-value" id="fire-rate"></span>
-          </div>
-        </div>
-        <div class="chart-container">
-          <canvas id="fire-chart"></canvas>
-        </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@marinechill.com">hello@marinechill.com</a></li>
+          <li><a href="tel:+18005553287">1-800-555-FRIDGE</a></li>
+          <li>Mon-Fri, 8am - 6pm EST</li>
+        </ul>
       </div>
-    </section>
-
-    <!-- Side Hustle Planner -->
-    <section id="side-hustle" class="tab-content">
-      <h2>Side Hustle Income Planner</h2>
-      <p class="description">Plan extra income streams and see how they accelerate your wealth.</p>
-
-      <div id="hustle-list">
-        <div class="hustle-row">
-          <input type="text" placeholder="Hustle name" class="hustle-name" value="Freelancing">
-          <input type="number" placeholder="$/month" class="hustle-income" value="1500" min="0" step="50">
-          <input type="number" placeholder="hrs/week" class="hustle-hours" value="10" min="0" step="1">
-          <button class="btn-remove" onclick="removeHustle(this)" title="Remove">&times;</button>
-        </div>
-      </div>
-      <button class="btn-add" onclick="addHustle()">+ Add Hustle</button>
-
-      <div class="calculator-grid" style="margin-top: 1.5rem;">
-        <div class="input-group">
-          <label for="hustle-invest-pct">% of Hustle Income Invested</label>
-          <input type="number" id="hustle-invest-pct" value="80" min="0" max="100" step="5">
-        </div>
-        <div class="input-group">
-          <label for="hustle-return">Annual Return (%)</label>
-          <input type="number" id="hustle-return" value="10" min="0" max="30" step="0.5">
-        </div>
-        <div class="input-group">
-          <label for="hustle-years">Time Period (years)</label>
-          <input type="number" id="hustle-years" value="5" min="1" max="30" step="1">
-        </div>
-      </div>
-
-      <button class="btn-calculate" onclick="calculateHustle()">Calculate</button>
-
-      <div id="hustle-results" class="results hidden">
-        <div class="result-cards">
-          <div class="result-card">
-            <span class="result-label">Monthly Hustle Income</span>
-            <span class="result-value" id="hustle-monthly"></span>
-          </div>
-          <div class="result-card">
-            <span class="result-label">Effective Hourly Rate</span>
-            <span class="result-value" id="hustle-hourly"></span>
-          </div>
-          <div class="result-card highlight">
-            <span class="result-label">Invested Growth Value</span>
-            <span class="result-value" id="hustle-growth"></span>
-          </div>
-          <div class="result-card accent">
-            <span class="result-label">Total Wealth Generated</span>
-            <span class="result-value" id="hustle-total"></span>
-          </div>
-        </div>
-        <div class="chart-container">
-          <canvas id="hustle-chart"></canvas>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Money Machine &mdash; Make smarter financial decisions. Not financial advice.</p>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 MarineChill. All rights reserved. This is a demo store.
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Product Modal -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="modal" id="product-modal">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" id="cart-close">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span class="total-price" id="cart-total">$0</span>
+      </div>
+      <button class="btn-checkout" id="btn-checkout" disabled>Checkout</button>
+    </div>
+  </aside>
+
   <script src="app.js"></script>
 </body>
 </html>
