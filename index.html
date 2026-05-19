@@ -3,185 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Money Machine - Wealth Builder Tools</title>
+  <title>Companio &mdash; Rent a Companion</title>
+  <meta name="description" content="Book a friendly companion for events, dinner, conversation, and activities. Platonic, vetted, and easy to book.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Money Machine</h1>
-    <p class="tagline">Tools to plan your path to wealth</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">
+        <span class="logo-mark">C</span>
+        <span class="logo-text">Companio</span>
+      </a>
+      <nav class="primary-nav">
+        <a href="#browse">Browse</a>
+        <a href="#how">How it works</a>
+        <a href="#bookings">My bookings</a>
+        <a href="#trust">Trust &amp; Safety</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <!-- Tab Navigation -->
-    <nav class="tabs">
-      <button class="tab active" data-tab="compound">Compound Interest</button>
-      <button class="tab" data-tab="fire">FIRE Calculator</button>
-      <button class="tab" data-tab="side-hustle">Side Hustle Planner</button>
-    </nav>
-
-    <!-- Compound Interest Calculator -->
-    <section id="compound" class="tab-content active">
-      <h2>Compound Interest Calculator</h2>
-      <p class="description">See how your money grows over time with the power of compounding.</p>
-
-      <div class="calculator-grid">
-        <div class="input-group">
-          <label for="ci-initial">Starting Amount ($)</label>
-          <input type="number" id="ci-initial" value="10000" min="0" step="100">
-        </div>
-        <div class="input-group">
-          <label for="ci-monthly">Monthly Contribution ($)</label>
-          <input type="number" id="ci-monthly" value="500" min="0" step="50">
-        </div>
-        <div class="input-group">
-          <label for="ci-rate">Annual Return (%)</label>
-          <input type="number" id="ci-rate" value="10" min="0" max="50" step="0.5">
-        </div>
-        <div class="input-group">
-          <label for="ci-years">Time Period (years)</label>
-          <input type="number" id="ci-years" value="20" min="1" max="60" step="1">
-        </div>
-      </div>
-
-      <button class="btn-calculate" onclick="calculateCompound()">Calculate</button>
-
-      <div id="ci-results" class="results hidden">
-        <div class="result-cards">
-          <div class="result-card highlight">
-            <span class="result-label">Future Value</span>
-            <span class="result-value" id="ci-future"></span>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Platonic companionship, on your schedule</span>
+          <h1>Great company, when you need it.</h1>
+          <p class="lede">
+            Book a vetted companion for a plus-one to a wedding, a dinner out, a city tour,
+            a workout partner, or just good conversation. No swiping, no dating &mdash; just real
+            people, real time, by the hour.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#browse">Browse companions</a>
+            <a class="btn btn-ghost" href="#how">How it works</a>
           </div>
-          <div class="result-card">
-            <span class="result-label">Total Contributed</span>
-            <span class="result-value" id="ci-contributed"></span>
-          </div>
-          <div class="result-card accent">
-            <span class="result-label">Interest Earned</span>
-            <span class="result-value" id="ci-interest"></span>
+          <div class="hero-meta">
+            <div><strong id="stat-companions">0</strong><span>Companions</span></div>
+            <div><strong id="stat-cities">0</strong><span>Cities</span></div>
+            <div><strong>4.9&#9733;</strong><span>Average rating</span></div>
           </div>
         </div>
-        <div class="chart-container">
-          <canvas id="ci-chart"></canvas>
-        </div>
-        <div id="ci-milestones" class="milestones"></div>
-      </div>
-    </section>
-
-    <!-- FIRE Calculator -->
-    <section id="fire" class="tab-content">
-      <h2>FIRE Calculator</h2>
-      <p class="description">Financial Independence, Retire Early &mdash; find out when you can stop working.</p>
-
-      <div class="calculator-grid">
-        <div class="input-group">
-          <label for="fire-income">Annual Income ($)</label>
-          <input type="number" id="fire-income" value="80000" min="0" step="1000">
-        </div>
-        <div class="input-group">
-          <label for="fire-expenses">Annual Expenses ($)</label>
-          <input type="number" id="fire-expenses" value="40000" min="0" step="1000">
-        </div>
-        <div class="input-group">
-          <label for="fire-saved">Current Savings ($)</label>
-          <input type="number" id="fire-saved" value="50000" min="0" step="1000">
-        </div>
-        <div class="input-group">
-          <label for="fire-return">Expected Return (%)</label>
-          <input type="number" id="fire-return" value="7" min="0" max="30" step="0.5">
-        </div>
-        <div class="input-group">
-          <label for="fire-withdraw">Safe Withdrawal Rate (%)</label>
-          <input type="number" id="fire-withdraw" value="4" min="1" max="10" step="0.5">
-        </div>
-      </div>
-
-      <button class="btn-calculate" onclick="calculateFIRE()">Calculate</button>
-
-      <div id="fire-results" class="results hidden">
-        <div class="result-cards">
-          <div class="result-card highlight">
-            <span class="result-label">FIRE Number</span>
-            <span class="result-value" id="fire-number"></span>
-          </div>
-          <div class="result-card accent">
-            <span class="result-label">Years to FIRE</span>
-            <span class="result-value" id="fire-years"></span>
-          </div>
-          <div class="result-card">
-            <span class="result-label">Savings Rate</span>
-            <span class="result-value" id="fire-rate"></span>
-          </div>
-        </div>
-        <div class="chart-container">
-          <canvas id="fire-chart"></canvas>
+        <div class="hero-art" aria-hidden="true">
+          <div class="floaty card-1"></div>
+          <div class="floaty card-2"></div>
+          <div class="floaty card-3"></div>
         </div>
       </div>
     </section>
 
-    <!-- Side Hustle Planner -->
-    <section id="side-hustle" class="tab-content">
-      <h2>Side Hustle Income Planner</h2>
-      <p class="description">Plan extra income streams and see how they accelerate your wealth.</p>
-
-      <div id="hustle-list">
-        <div class="hustle-row">
-          <input type="text" placeholder="Hustle name" class="hustle-name" value="Freelancing">
-          <input type="number" placeholder="$/month" class="hustle-income" value="1500" min="0" step="50">
-          <input type="number" placeholder="hrs/week" class="hustle-hours" value="10" min="0" step="1">
-          <button class="btn-remove" onclick="removeHustle(this)" title="Remove">&times;</button>
+    <!-- How it works -->
+    <section id="how" class="how">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Browse</h3>
+            <p>Filter by city, interests, and hourly rate. Read profiles and reviews.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Book</h3>
+            <p>Pick a date, time, and length. Add a note about what you have in mind.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Meet</h3>
+            <p>Meet in public, enjoy the activity, and leave a review when you're done.</p>
+          </div>
         </div>
       </div>
-      <button class="btn-add" onclick="addHustle()">+ Add Hustle</button>
+    </section>
 
-      <div class="calculator-grid" style="margin-top: 1.5rem;">
-        <div class="input-group">
-          <label for="hustle-invest-pct">% of Hustle Income Invested</label>
-          <input type="number" id="hustle-invest-pct" value="80" min="0" max="100" step="5">
+    <!-- Browse -->
+    <section id="browse" class="browse">
+      <div class="container">
+        <div class="section-head">
+          <h2>Find a companion</h2>
+          <p class="muted">All bookings are platonic. Companions choose the activities they accept.</p>
         </div>
-        <div class="input-group">
-          <label for="hustle-return">Annual Return (%)</label>
-          <input type="number" id="hustle-return" value="10" min="0" max="30" step="0.5">
+
+        <div class="filters">
+          <div class="filter">
+            <label for="f-city">City</label>
+            <select id="f-city"><option value="">All cities</option></select>
+          </div>
+          <div class="filter">
+            <label for="f-interest">Interest</label>
+            <select id="f-interest"><option value="">All interests</option></select>
+          </div>
+          <div class="filter">
+            <label for="f-rate">Max hourly rate</label>
+            <div class="rate-row">
+              <input type="range" id="f-rate" min="30" max="300" step="10" value="300">
+              <span id="f-rate-val">$300</span>
+            </div>
+          </div>
+          <div class="filter">
+            <label for="f-search">Search</label>
+            <input type="text" id="f-search" placeholder="Name or keyword">
+          </div>
+          <button id="f-reset" class="btn btn-link">Reset</button>
         </div>
-        <div class="input-group">
-          <label for="hustle-years">Time Period (years)</label>
-          <input type="number" id="hustle-years" value="5" min="1" max="30" step="1">
-        </div>
+
+        <div id="companion-grid" class="grid"></div>
+        <p id="no-results" class="no-results hidden">No companions match your filters. Try widening your search.</p>
       </div>
+    </section>
 
-      <button class="btn-calculate" onclick="calculateHustle()">Calculate</button>
-
-      <div id="hustle-results" class="results hidden">
-        <div class="result-cards">
-          <div class="result-card">
-            <span class="result-label">Monthly Hustle Income</span>
-            <span class="result-value" id="hustle-monthly"></span>
-          </div>
-          <div class="result-card">
-            <span class="result-label">Effective Hourly Rate</span>
-            <span class="result-value" id="hustle-hourly"></span>
-          </div>
-          <div class="result-card highlight">
-            <span class="result-label">Invested Growth Value</span>
-            <span class="result-value" id="hustle-growth"></span>
-          </div>
-          <div class="result-card accent">
-            <span class="result-label">Total Wealth Generated</span>
-            <span class="result-value" id="hustle-total"></span>
-          </div>
+    <!-- My bookings -->
+    <section id="bookings" class="bookings">
+      <div class="container">
+        <div class="section-head">
+          <h2>My bookings</h2>
+          <p class="muted">Saved locally in this browser.</p>
         </div>
-        <div class="chart-container">
-          <canvas id="hustle-chart"></canvas>
+        <div id="bookings-list" class="bookings-list"></div>
+        <p id="bookings-empty" class="muted">You haven't booked anyone yet.</p>
+      </div>
+    </section>
+
+    <!-- Trust & Safety -->
+    <section id="trust" class="trust">
+      <div class="container trust-grid">
+        <div>
+          <h2>Trust &amp; Safety</h2>
+          <p>
+            Companio is a platform for <strong>platonic companionship</strong>: events, meals, sightseeing,
+            workouts, errands, and conversation. It is not a dating, escort, or adult-services platform.
+          </p>
+          <ul class="check-list">
+            <li>ID-verified companions</li>
+            <li>In-app messaging until you meet</li>
+            <li>Public meeting spots recommended</li>
+            <li>Rating &amp; review after every booking</li>
+            <li>Refund protection on no-shows</li>
+            <li>24/7 trust &amp; safety support</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <h3>Our community rules</h3>
+          <ol>
+            <li>Treat companions with respect &mdash; they choose what they accept.</li>
+            <li>No requests for romantic, sexual, or illegal activity.</li>
+            <li>Pay through the platform; never off-app.</li>
+            <li>Show up on time, or cancel at least 12 hours ahead.</li>
+          </ol>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>Money Machine &mdash; Make smarter financial decisions. Not financial advice.</p>
+  <!-- Booking modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-panel">
+      <button class="modal-close" data-close="1" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Companio &mdash; Platonic companionship, by the hour.</p>
+      <p class="fine">Demo project. All companions, ratings, and bookings shown are fictional.</p>
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
