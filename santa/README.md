@@ -9,6 +9,16 @@ A static Secret Santa that gives every person their own private link.
   code. Without the code the file says only how many people took part.
 - `draw.mjs` runs the draw and writes `data.json`. It needs Node 18 or newer.
 
+## Hosting on Vercel
+
+Import the GitHub repository in Vercel and set **Root Directory** to `santa`
+(Framework Preset: Other). `vercel.json` in this folder turns off caching for
+`data.json` and keeps the page out of search engines. Every push then deploys,
+and the links use the project's `*.vercel.app` address: pass it to the draw
+script with `--base https://<project>.vercel.app/`.
+
+With the Vercel CLI instead: `vercel deploy --prod --cwd santa`.
+
 ## Running a draw
 
 1. Put one name per line in a file that is **not** committed, e.g. `names.txt`.
