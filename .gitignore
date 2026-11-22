@@ -1,0 +1,8 @@
+# Secret Santa inputs and outputs that must stay private
+names*.txt
+links*.csv
+santa/names*.txt
+santa/links*.csv
+
+# Vercel CLI link files
+.vercel
